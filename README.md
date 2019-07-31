@@ -12,6 +12,8 @@ adding filter and count
 ### Step 2
 More data - adjectives
 more filters
+what about getting common adjective suffixes?
+and what if I want just a flat list of those suffixes?
 how long does it take to generate the response?
 
 

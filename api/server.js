@@ -6,7 +6,6 @@ const randomSelection = (data, limit) => {
     const tmp = Array.from(new Array(l).keys());
     for (let i = 0; i < limit; i++) {
         const r = Math.floor(Math.random() * l);
-        console.info(">> swapping:", i, r);
         [tmp[i], tmp[r]] = [tmp[r], tmp[i]];
     }
     return tmp.slice(0, limit).map($ => data[$]);
@@ -24,7 +23,16 @@ app.get("/countries", (req, res) => {
         data = data.filter($ => (new RegExp(`^${startsWith}`, "i")).test($.name));
     }
 
+    if (endsWith) {
+        data = data.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
+    }
+
+    if (limit) {
+        data = randomSelection(data, limit);
+    }
+
     data = data.map($ => $.name);
+
     res.json({
         data,
         length: data.length
@@ -42,10 +50,24 @@ app.get("/adjectives", (req, res) => {
     if (endsWith) {
         data = data.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
     }
-console.info(1);
+
     if (limit) {
-        console.info(2);
         data = randomSelection(data, limit);
+    }
+
+    res.json({
+        data,
+        length: data.length
+    });
+});
+
+app.get("/adjectives/suffixes", (req, res) => {
+    const { flat } = req.query;
+
+    let data = require("./data/adjectives").suffixes;
+
+    if (flat) {
+        data = [].concat(...data);
     }
 
     res.json({
