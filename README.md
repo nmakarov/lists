@@ -15,6 +15,14 @@ more filters
 how long does it take to generate the response?
 
 
+### To come
+
+params validation
+housekeeping: eslint
+e2e and unit tests
+modularization
+
+
 ## Data sources
 
 ### Countries
