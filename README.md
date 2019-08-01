@@ -16,6 +16,8 @@ what about getting common adjective suffixes?
 and what if I want just a flat list of those suffixes?
 how long does it take to generate the response?
 
+### Step 3
+getting closer to the product (internal checks etc)
 
 ### To come
 
