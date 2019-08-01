@@ -18,13 +18,14 @@ how long does it take to generate the response?
 
 ### Step 3
 getting closer to the product (internal checks etc)
+housekeeping: make linter happy
+split code into modules
+
 
 ### To come
 
 params validation
-housekeeping: eslint
 e2e and unit tests
-modularization
 
 
 ## Data sources
