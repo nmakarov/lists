@@ -11,6 +11,18 @@ const randomSelection = (data, limit) => {
     return tmp.slice(0, limit).map($ => data[$]);
 }
 
+app.use((req, res, next) => {
+    const start = +(new Date);
+    res.jsonEx = data => {
+        res.json({
+            data,
+            length: data.length,
+            server: +(new Date) - start
+        });
+    };
+    next();
+});
+
 app.get("/version", (req, res) => {
     res.json({status: "ok"});
 });
@@ -33,10 +45,7 @@ app.get("/countries", (req, res) => {
 
     data = data.map($ => $.name);
 
-    res.json({
-        data,
-        length: data.length
-    });
+    res.jsonEx(data);
 });
 
 app.get("/adjectives", (req, res) => {
@@ -55,10 +64,7 @@ app.get("/adjectives", (req, res) => {
         data = randomSelection(data, limit);
     }
 
-    res.json({
-        data,
-        length: data.length
-    });
+    res.jsonEx(data);
 });
 
 app.get("/adjectives/suffixes", (req, res) => {
@@ -70,10 +76,7 @@ app.get("/adjectives/suffixes", (req, res) => {
         data = [].concat(...data);
     }
 
-    res.json({
-        data,
-        length: data.length
-    });
+    res.jsonEx(data);
 });
 
 app.listen(4321, () => {
