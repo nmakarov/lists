@@ -7,8 +7,33 @@ const { randomSelection } = require("../utils");
 describe("Test tutils", () => {
 	const data = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
 
-	test("randomSelection", async () => {
-		const res = randomSelection(data, 5);
-		expect(res.length).toBe(5);
+	describe("happy", () => {
+		test("sanity test", () => {
+			const res = randomSelection(data, 5);
+			expect(res.length).toBe(5);
+		});
+		test("default limit", () => {
+			const res = randomSelection(data);
+			expect(res.length).toBe(1);
+		});
+		test("default limit", () => {
+			const res = randomSelection(data, 155);
+			expect(res.length).toBe(data.length);
+		});
+	});
+
+	describe("unhappy", () => {
+		test("non-integer limit", () => {
+			expect(() => { randomSelection(data, "a"); }).toThrow();
+		});
+		test("negative limit", () => {
+			expect(() => { randomSelection(data, -5); }).toThrow();
+		});
+		test("non-array data", () => {
+			expect(() => { randomSelection(123, 5); }).toThrow();
+		});
+		test("non-array data #2", () => {
+			expect(() => { randomSelection("abc", 5); }).toThrow();
+		});
 	});
 });

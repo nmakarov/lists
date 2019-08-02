@@ -24,6 +24,8 @@ tests up and running
 commands in package.js
 making sure we have good coverage and eslint is happy with test definitions
 
+### Step 4
+Very important – leap from a code to the product
 
 ### To come
 

@@ -4,9 +4,9 @@
   "description": "Lists API server and React app tutorial",
   "main": "index.js",
   "scripts": {
-		"test": "jest",
-		"lint": "eslint api",
-		"start": "nodemon api"
+    "test": "jest",
+    "lint": "eslint api",
+    "start": "nodemon api"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/nmakarov/lists#readme",
   "dependencies": {
+    "@hapi/joi": "^15.1.0",
     "express": "^4.17.1"
   },
   "devDependencies": {

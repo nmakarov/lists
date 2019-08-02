@@ -16,9 +16,12 @@ router.get("/countries", (req, res) => {
 		data = data.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
 	}
 
+	console.info("here 1");
 	if (limit) {
 		data = randomSelection(data, limit);
 	}
+
+	console.info("here 2");
 
 	data = data.map($ => $.name);
 
