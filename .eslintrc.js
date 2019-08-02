@@ -1,5 +1,8 @@
 module.exports = {
-    "extends": "airbnb-base",
+	"extends": "airbnb-base",
+	"env": {
+		"jest": true
+	},
     "rules": {
         "no-tabs": 0,
         "indent": [2, "tab"],

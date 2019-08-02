@@ -20,6 +20,9 @@ how long does it take to generate the response?
 getting closer to the product (internal checks etc)
 housekeeping: make linter happy
 split code into modules
+tests up and running
+commands in package.js
+making sure we have good coverage and eslint is happy with test definitions
 
 
 ### To come
