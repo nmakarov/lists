@@ -1,6 +1,6 @@
 module.exports = [
 	{ name: "Afghanistan", code: "AF" },
-	{ name: "Åland Islands", code: "AX" },
+	{ name: "Aland Islands", code: "AX" },
 	{ name: "Albania", code: "AL" },
 	{ name: "Algeria", code: "DZ" },
 	{ name: "American Samoa", code: "AS" },

@@ -23,19 +23,20 @@ const randomSelection = (data, limit = 1) => {
 };
 
 const basicFilter = (data, { startsWith, endsWith, limit }) => {
+	let d = data;
 	if (startsWith) {
-		data = data.filter($ => (new RegExp(`^${startsWith}`, "i")).test($));
+		d = d.filter($ => (new RegExp(`^${startsWith}`, "i")).test($));
 	}
 
 	if (endsWith) {
-		data = data.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
+		d = d.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
 	}
 
 	if (limit) {
-		data = randomSelection(data, limit);
+		d = randomSelection(d, limit);
 	}
 
-	return data;
+	return d;
 };
 
 module.exports = {

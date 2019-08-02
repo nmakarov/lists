@@ -6,9 +6,11 @@
   "scripts": {
     "start": "nodemon api",
     "lint": "eslint api",
-    "test": "jest",
-    "load": "artillery run -o artillery_report.json -e ${APP_ENV:-'development'} load-test.yml"
-  },
+		"test:unit": "jest",
+		"test:perf": "httperf --server localhost --uri /version --num-conn 20 --num-cal 800 --rate 20 --timeout 5",
+    "test:load": "artillery run -o artillery_report.json -e ${APP_ENV:-'development'} load-test.yml",
+		"test": "npm run test:unit"
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nmakarov/lists.git"

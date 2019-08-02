@@ -44,5 +44,4 @@ describe("Test the adjectives path", () => {
 			expect(response.statusCode).toBe(500);
 		});
 	});
-
 });
