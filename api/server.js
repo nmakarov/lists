@@ -18,7 +18,7 @@ app.use(adjectivesRouter);
 app.use((error, req, res, next) => {
 	console.info(error);
 	res.status(500).json({
-		errors: error.error && error.error.details ? error.error.details.map($ => $.message) : error
+		errors: error.error && error.error.details ? error.error.details.map($ => $.message) : error,
 	});
 });
 

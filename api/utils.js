@@ -1,13 +1,13 @@
-const Joi = require('@hapi/joi');
+const Joi = require("@hapi/joi");
 
 const validator = Joi.object().keys({
 	// data: Joi.array().items(Joi.string()),
 	data: Joi.array(),
-	limit: Joi.number().integer().min(1)
+	limit: Joi.number().integer().min(1),
 });
 
-const randomSelection = (data, limit=1) => {
-	const v = validator.validate({data, limit});
+const randomSelection = (data, limit = 1) => {
+	const v = validator.validate({ data, limit });
 	if (v.error) {
 		throw v;
 	}
