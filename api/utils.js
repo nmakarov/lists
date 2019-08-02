@@ -22,6 +22,23 @@ const randomSelection = (data, limit = 1) => {
 	return tmp.slice(0, _limit).map($ => data[$]);
 };
 
+const basicFilter = (data, { startsWith, endsWith, limit }) => {
+	if (startsWith) {
+		data = data.filter($ => (new RegExp(`^${startsWith}`, "i")).test($));
+	}
+
+	if (endsWith) {
+		data = data.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
+	}
+
+	if (limit) {
+		data = randomSelection(data, limit);
+	}
+
+	return data;
+};
+
 module.exports = {
 	randomSelection,
+	basicFilter,
 };

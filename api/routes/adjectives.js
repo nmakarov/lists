@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { randomSelection } = require("../utils");
+const { basicFilter } = require("../utils");
 const { adjectives, suffixes } = require("../data/adjectives");
 
 const router = Router();
@@ -8,17 +8,7 @@ router.get("/adjectives", (req, res) => {
 	let data = adjectives;
 	const { startsWith, endsWith, limit } = req.query;
 
-	if (startsWith) {
-		data = data.filter($ => (new RegExp(`^${startsWith}`, "i")).test($));
-	}
-
-	if (endsWith) {
-		data = data.filter($ => (new RegExp(`${endsWith}$`, "i")).test($));
-	}
-
-	if (limit) {
-		data = randomSelection(data, limit);
-	}
+	data = basicFilter(data, { startsWith, endsWith, limit });
 
 	res.jsonEx(data);
 });

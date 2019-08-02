@@ -4,9 +4,10 @@
   "description": "Lists API server and React app tutorial",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "start": "nodemon api",
     "lint": "eslint api",
-    "start": "nodemon api"
+    "test": "jest",
+    "load": "artillery run -o artillery_report.json -e ${APP_ENV:-'development'} load-test.yml"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "artillery": "^1.6.0-28",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",

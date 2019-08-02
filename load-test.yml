@@ -1,0 +1,15 @@
+config:
+  environments:
+    production:
+      target: 'http://localhost:4321'
+    staging:
+      target: 'http://localhost:4321'
+    development:
+      target: 'http://localhost:4321'
+  phases:
+    - duration: 15
+      arrivalRate: 50
+scenarios:
+  - flow:
+    - get:
+        url: "/adjectives"
