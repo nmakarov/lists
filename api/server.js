@@ -1,5 +1,6 @@
 const http = require("http");
 const Express = require("express");
+const morgan = require("morgan");
 
 const serverTime = require("./middlewares/serverTime");
 const versionRouter = require("./routes/version");
@@ -9,6 +10,7 @@ const constellationsRouter = require("./routes/constellations");
 
 const app = Express();
 
+app.use(morgan("tiny", { skip: (req, res) => process.env.NODE_ENV==="test" }));
 app.use(serverTime);
 
 app.use(versionRouter);

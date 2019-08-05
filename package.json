@@ -6,11 +6,11 @@
   "scripts": {
     "start": "nodemon api",
     "lint": "eslint api",
-		"test:unit": "jest",
-		"test:perf": "httperf --server localhost --uri /version --num-conn 20 --num-cal 800 --rate 20 --timeout 5",
+    "test:unit": "jest",
+    "test:perf": "httperf --server localhost --uri /version --num-conn 20 --num-cal 800 --rate 20 --timeout 5",
     "test:load": "artillery run -o artillery_report.json -e ${APP_ENV:-'development'} load-test.yml",
-		"test": "npm run test:unit"
-	},
+    "test": "npm run test:unit"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nmakarov/lists.git"
@@ -23,7 +23,9 @@
   "homepage": "https://github.com/nmakarov/lists#readme",
   "dependencies": {
     "@hapi/joi": "^15.1.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "artillery": "^1.6.0-28",

@@ -45,3 +45,11 @@ https://www.enchantedlearning.com/wordlist/adjectives.shtml
 https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/
 
 
+### Constellations
+http://www.astro.wisc.edu/~dolan/constellations/constellation_list.html
+
+## Todo
+
+### Add these datasets:
+- Mayan gods
+- Greek gods
