@@ -13,8 +13,8 @@ const logger = winston.createLogger({
 	format: winston.format.combine(
 		winston.format.colorize(),
 		// winston.format.label({ label: ':' }),
-		// winston.format.timestamp(),
-		winston.format((info, opts) => { info.timestamp=moment().format("MM-DD HH:MM"); return info; })(),
+		winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm'}),
+		// winston.format((info, opts) => { info.timestamp=moment().format("MM-DD HH:MM"); return info; })(),
 		myFormat
 	),
 	transports: [
