@@ -1,9 +1,6 @@
+const config = require("lastconf");
 const server = require("./server");
 
-const config = {
-	port: 4321,
-};
-
-server.listen(config.port, () => {
-	console.info("API Server listening on", server.address().port);
+server.listen(config.get("port"), () => {
+	console.info(`[${config.env}] API Server listening on ${server.address().port}`);
 });
