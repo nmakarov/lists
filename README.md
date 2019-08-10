@@ -26,11 +26,12 @@ making sure we have good coverage and eslint is happy with test definitions
 
 ### Step 4
 Very important – leap from a code to the product
+Params validation
+More tests
+Error handling
+Logger
 
 ### To come
-
-params validation
-e2e and unit tests
 
 
 ## Data sources

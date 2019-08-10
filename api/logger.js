@@ -4,6 +4,7 @@ const config = require("lastconf");
 
 const customFormat = winston.format.printf(({ level, message, timestamp }) => `${timestamp} ${level}: ${message}`);
 
+console.info(">> logger level:", config.get("logger.level"));
 const logger = winston.createLogger({
 	level: config.get("logger.level"),
 	json: false,
