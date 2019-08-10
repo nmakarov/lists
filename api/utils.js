@@ -1,4 +1,6 @@
 const Joi = require("@hapi/joi");
+const { ValidationError } = require("./errors");
+// const logger = require("./logger");
 
 const validator = Joi.object().keys({
 	// data: Joi.array().items(Joi.string()),
@@ -9,7 +11,7 @@ const validator = Joi.object().keys({
 const randomSelection = (data, limit = 1) => {
 	const v = validator.validate({ data, limit });
 	if (v.error) {
-		throw v;
+		throw new ValidationError(v);
 	}
 
 	const l = data.length;
