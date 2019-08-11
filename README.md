@@ -31,10 +31,20 @@ More tests
 Error handling
 Logger
 
+### Step 5
+Deployment
+
 ### To come
 
 
 ### Development
+
+#### Linter
+npm run lint
+
+#### Tests
+npm run test:unit
+
 #### version bump
 after `git commit` do `npm version patch` or `npm version minor` and then `git push`
 
