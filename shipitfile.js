@@ -11,14 +11,12 @@ module.exports = shipit => {
 	});
 
 	shipit.on("deployed", () => {
-		const env = shipit.environment;
-		const proc = "api";
-		console.info(">>> deployed, env:", env);
+		// const env = shipit.environment;
 
 		const cmd = `
-			cd ${shipit.releasePath} &&
-			npm install --production &&
-			NODE_ENV=production pm2 restart ${proc} --name lists
+			cd ${shipit.releasePath} && \
+			npm install --production && \
+			NODE_ENV=production pm2 restart api
 		`;
 
 		shipit.remote(cmd);

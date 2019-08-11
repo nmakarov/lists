@@ -38,6 +38,9 @@ Logger
 #### version bump
 after `git commit` do `npm version patch` or `npm version minor` and then `git push`
 
+#### deployment
+npx shipit production deploy
+
 ## Data sources
 
 ### Countries
