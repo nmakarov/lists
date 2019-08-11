@@ -16,7 +16,8 @@ module.exports = shipit => {
 		const cmd = `
 			cd ${shipit.releasePath} && \
 			npm install --production && \
-			NODE_ENV=production pm2 restart api
+			pm2 delete api && \
+			NODE_ENV=production pm2 start api
 		`;
 
 		shipit.remote(cmd);
