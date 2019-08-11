@@ -39,7 +39,7 @@ describe("Test the adjectives path", () => {
 	});
 
 	describe("unhappy", () => {
-		test("bad limit", async () => {
+		test("non-integer limit", async () => {
 			const response = await request(server).get("/adjectives?limit=a");
 			expect(response.statusCode).toBe(500);
 		});
