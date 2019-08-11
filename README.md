@@ -34,6 +34,10 @@ Logger
 ### To come
 
 
+### Development
+#### version bump
+after `git commit` do `npm version patch` or `npm version minor` and then `git push`
+
 ## Data sources
 
 ### Countries

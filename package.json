@@ -36,6 +36,8 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "jest": "^24.8.0",
+    "shipit-cli": "^5.0.0",
+    "shipit-deploy": "^5.0.0",
     "supertest": "^4.0.2"
   }
 }
