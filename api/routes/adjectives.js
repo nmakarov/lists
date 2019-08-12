@@ -13,6 +13,10 @@ router.get("/adjectives", (req, res) => {
 	res.jsonEx(data);
 });
 
+/**
+ * @api {get} /adjectives/suffixes get common suffixes
+ * @apiGroup Adjectives
+ */
 router.get("/adjectives/suffixes", (req, res) => {
 	let data = suffixes;
 	const { flat } = req.query;

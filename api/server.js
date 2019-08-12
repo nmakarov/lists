@@ -1,9 +1,11 @@
 const http = require("http");
 const Express = require("express");
 const morgan = require("morgan");
-const boom = require("express-boom");
-
+// const path = require("path");
+// const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 const config = require("lastconf")({ folder: "api/config" });
+
 const logger = require("./logger");
 const serverTime = require("./middlewares/serverTime");
 const versionRouter = require("./routes/version");
@@ -15,7 +17,14 @@ const errors = require("./errors");
 
 const app = Express();
 
-app.use(boom());
+const swaggerSpec = require("./routes/swagger");
+
+app.get("/swagger.json", (req, res) => {
+	res.setHeader("Content-Type", "application/json");
+	res.json(swaggerSpec);
+});
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(morgan("tiny", {
 	stream: logger.stream,
 	skip: (req, res) => config.env === "test",

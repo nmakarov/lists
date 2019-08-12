@@ -35,7 +35,9 @@ Logger
 Deployment
 
 ### To come
-
+http://apidocjs.com/
+redis
+postgres
 
 ### Development
 
