@@ -28,8 +28,13 @@ class NotFoundError extends ApiError {
 	}
 }
 
+class RedisError extends ApiError {
+
+}
+
 module.exports = {
 	ApiError,
 	ValidationError,
 	NotFoundError,
+	RedisError,
 };
