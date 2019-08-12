@@ -50,8 +50,17 @@ npm run test:unit
 #### version bump
 after `git commit` do `npm version patch` or `npm version minor` and then `git push`
 
-#### deployment
+
+### Deployment - to preconfigured EC2 instance
+
 npx shipit production deploy
+
+### Deployment – Terraform
+
+terraform init
+terraform apply
+terraform destroy
+
 
 ## Data sources
 
