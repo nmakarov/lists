@@ -5,6 +5,7 @@ resource "aws_instance" "listsapiprod" {
 
     security_groups = [
         "${aws_security_group.allow_ssh.name}",
+        "${aws_security_group.allow_http.name}",
         "${aws_security_group.allow_outbound.name}",
     ]
 
