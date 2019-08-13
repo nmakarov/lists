@@ -1,0 +1,10 @@
+server {
+  listen 80;
+  server_name api.lists.expertbasics.com;
+
+  location /api/lists {
+    rewrite ^/api/lists(/.*)$ $1 break;
+    proxy_pass         http://localhost:4321/;
+    proxy_redirect     off;
+  }
+}

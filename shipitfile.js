@@ -4,9 +4,11 @@ module.exports = shipit => {
 		default: {
 			deployTo: "/var/apps/lists",
 			repositoryUrl: "git@github.com:nmakarov/lists.git",
+			key: "~/.ssh/terraform_rsa"
 		},
 		production: {
-			servers: "ubuntu@lists.expertbasics.com"
+			servers: "ubuntu@api.lists.expertbasics.com"
+			// servers: "ubuntu@lists.expertbasics.com"
 		}
 	});
 
@@ -16,7 +18,7 @@ module.exports = shipit => {
 		const cmd = `
 			cd ${shipit.releasePath} && \
 			npm install --production && \
-			pm2 delete api && \
+			pm2 delete api; \
 			NODE_ENV=production pm2 start api
 		`;
 

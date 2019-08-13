@@ -22,6 +22,27 @@ resource "aws_instance" "listsapiprod" {
             "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -",
             "sudo apt-get install -y nodejs",
             "node --version",
+            "sudo chown -R ubuntu:ubuntu /usr/lib/node_modules",
+            "sudo chmod 0775 /usr/bin/",
+            "sudo chown root:ubuntu /usr/bin/",
+            "npm i -g pm2",
+            "yes | sudo apt install nginx",
+            # "sudo chkconfig nginx on",
+            "sudo mkdir -p /var/apps/lists",
+            "sudo chown -R ubuntu:ubuntu /var/apps/",
+        ]
+    }
+
+    provisioner "file" {
+        source = "files/lists"
+        destination = "/tmp/lists"
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "sudo mv /tmp/lists /etc/nginx/sites-available/lists",
+            "sudo ln -s /etc/nginx/sites-available/lists /etc/nginx/sites-enabled/.",
+            "sudo service nginx restart"
         ]
     }
 
@@ -29,3 +50,4 @@ resource "aws_instance" "listsapiprod" {
         Name = "lists"
     }
 }
+
