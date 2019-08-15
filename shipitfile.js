@@ -8,7 +8,6 @@ module.exports = shipit => {
 		},
 		production: {
 			servers: "ubuntu@api.lists.expertbasics.com"
-			// servers: "ubuntu@lists.expertbasics.com"
 		}
 	});
 

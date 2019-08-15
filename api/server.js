@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const swaggerUi = require("swagger-ui-express");
 const config = require("lastconf")({ folder: "api/config" });
 
-// const redis = require("./adapters/redis");
+const redis = require("./adapters/redis");
 
 const logger = require("./logger");
 const serverTime = require("./middlewares/serverTime");
@@ -22,6 +22,7 @@ const app = Express();
 
 // curl -X POST localhost:4321/stash/a  -d {\"key\":\"value\"} -H "Content-Type: application/json"
 app.use(bodyParser.json({ type: "application/*+json" }));
+// curl localhost:4321/stash/text/a -X POST -d "abc"  -H "Content-Type: text/html"
 app.use(bodyParser.text({ type: "text/html" }));
 // curl -X POST localhost:4321/stash/a  -d "aaa=123"
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,7 +52,7 @@ app.use(countriesRouter);
 app.use(adjectivesRouter);
 app.use(constellationsRouter);
 
-/*
+
 app.get("/stash/text/:id", async (req, res) => {
 	const { id } = req.params;
 	const data = await redis.get(id);
@@ -62,6 +63,7 @@ app.get("/stash/text/:id", async (req, res) => {
 app.post("/stash/text/:id", async (req, res) => {
 	const { id } = req.params;
 	const { body } = req;
+	console.info(">> body:", body);
 	await redis.set(id, body);
 	res.end("ok");
 });
@@ -83,7 +85,7 @@ app.post("/stash/:id", async (req, res) => {
 		id, body,
 	});
 });
-*/
+
 
 app.use("*", (req, res) => {
 	throw new errors.NotFoundError(req.baseUrl);
