@@ -65,7 +65,6 @@ app.get("/stash/text/:id", async (req, res) => {
 app.post("/stash/text/:id", async (req, res) => {
 	const { id } = req.params;
 	const { body } = req;
-	console.info(">> body:", body);
 	await redis.set(id, body);
 	res.end("ok");
 });

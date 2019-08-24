@@ -70,10 +70,10 @@ const fetchRate = async date => axios({
 	method: "GET",
 	baseURL: "https://api.ratesapi.io/api",
 	url: `/${date}`,
-	params: { base: "USD" }
+	params: { base: "USD" },
 });
 
-const getRates = async d => {
+const getRates = async (d) => {
 	let origin = "cache";
 	let dayRates = {};
 	const redisRates = await redis.hget(hashkey, d);
@@ -87,25 +87,25 @@ const getRates = async d => {
 	}
 
 	return { origin, dayRates };
-}
+};
 
 router.get("/currency", async (req, res) => {
 	// const { base, symbols, start, end, date } = req.query;
 	const { base, symbols, date } = req.query;
 
 	const b = base || "USD";
-	const d = moment(date ? date : undefined).format("YYYY-MM-DD");
+	const d = moment(date || undefined).format("YYYY-MM-DD");
 
 	const { origin, dayRates } = await getRates(d);
 
 	// await redis.del(hashkey);
 
-	const rates = symbols ? _.pick(dayRates, symbols.split(/,\s*/)): dayRates;
-	if ( b !== "USD") {
+	const rates = symbols ? _.pick(dayRates, symbols.split(/,\s*/)) : dayRates;
+	if (b !== "USD") {
 		const u = rates[b];
-		Object.keys(rates).forEach(k => {
+		Object.keys(rates).forEach((k) => {
 			rates[k] /= u;
-		})
+		});
 	}
 	res.jsonEx(rates, { base: b, date: d, origin });
 });
