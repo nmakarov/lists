@@ -79,7 +79,6 @@ const getRates = async d => {
 	const redisRates = await redis.hget(hashkey, d);
 	if (redisRates) {
 		dayRates = JSON.parse(redisRates);
-		console.info(dayRates);
 	} else {
 		const response = await fetchRate(d);
 		dayRates = response.data.rates;
@@ -108,7 +107,7 @@ router.get("/currency", async (req, res) => {
 			rates[k] /= u;
 		})
 	}
-	res.jsonEx(rates, { base: b, origin });
+	res.jsonEx(rates, { base: b, date: d, origin });
 });
 
 router.get("/currency/symbols", async (req, res) => {

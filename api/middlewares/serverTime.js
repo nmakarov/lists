@@ -8,7 +8,7 @@ app.use((req, res, next) => {
 		res.json({
 			data,
 			length: data.length,
-			server: +(new Date()) - start,
+			server: `${(+(new Date()) - start)/1000} ms`,
 			...extra
 		});
 	};
