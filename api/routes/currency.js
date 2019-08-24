@@ -5,6 +5,7 @@ const _ = require("lodash");
 
 const router = Router();
 const redis = require("../adapters/redis");
+const curr = require("../data/currency");
 
 /*
 
@@ -72,26 +73,33 @@ const fetchRate = async date => axios({
 	params: { base: "USD" }
 });
 
-router.get("/currency", async (req, res) => {
-	const { base, symbols, start, end, date } = req.query;
-
-	const b = base || "USD";
-	const d = moment(date ? date : undefined).format("YYYY-MM-DD");
-
-	let dayRates = {};
-
+const getRates = async d => {
 	let origin = "cache";
-
-	// await redis.del(hashkey);
+	let dayRates = {};
 	const redisRates = await redis.hget(hashkey, d);
 	if (redisRates) {
 		dayRates = JSON.parse(redisRates);
+		console.info(dayRates);
 	} else {
 		const response = await fetchRate(d);
 		dayRates = response.data.rates;
 		await redis.hset(hashkey, d, JSON.stringify(dayRates));
 		origin = "remote";
 	}
+
+	return { origin, dayRates };
+}
+
+router.get("/currency", async (req, res) => {
+	// const { base, symbols, start, end, date } = req.query;
+	const { base, symbols, date } = req.query;
+
+	const b = base || "USD";
+	const d = moment(date ? date : undefined).format("YYYY-MM-DD");
+
+	const { origin, dayRates } = await getRates(d);
+
+	// await redis.del(hashkey);
 
 	const rates = symbols ? _.pick(dayRates, symbols.split(/,\s*/)): dayRates;
 	if ( b !== "USD") {
@@ -101,6 +109,11 @@ router.get("/currency", async (req, res) => {
 		})
 	}
 	res.jsonEx(rates, { base: b, origin });
+});
+
+router.get("/currency/symbols", async (req, res) => {
+	const data = curr.filter(c => c.supported).map(c => c.symbol);
+	res.json(data);
 });
 
 module.exports = router;
