@@ -15,6 +15,7 @@ const versionRouter = require("./routes/version");
 const countriesRouter = require("./routes/countries");
 const adjectivesRouter = require("./routes/adjectives");
 const constellationsRouter = require("./routes/constellations");
+const currencyRouter = require("./routes/currency");
 
 const errors = require("./errors");
 
@@ -51,6 +52,7 @@ app.use(versionRouter);
 app.use(countriesRouter);
 app.use(adjectivesRouter);
 app.use(constellationsRouter);
+app.use(currencyRouter);
 
 
 app.get("/stash/text/:id", async (req, res) => {
