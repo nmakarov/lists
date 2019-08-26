@@ -1,3 +1,3 @@
 
-sudo apt install postgresql-client-common
-sudo apt install postgresql-client/bionic
+sudo apt-get install -y postgresql-client-common
+sudo apt-get install -y postgresql-client/bionic
