@@ -1,3 +1,5 @@
+# terraform apply -var-file="user.tfvars"
+
 resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
 
@@ -19,19 +21,6 @@ resource "aws_route" "route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.gateway.id}"
 }
-
-# resource "aws_subnet" "main" {
-# #   count                   = "${length(data.aws_availability_zones.available.names)}"
-#   vpc_id                  = "${aws_vpc.vpc.id}"
-# #   cidr_block              = "10.0.${count.index}.0/24"
-#     cidr_block = "10.0.1.0/24"
-#   map_public_ip_on_launch = true
-# #   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"
-#     availability_zone = "us-west-2a"
-#   tags = {
-#     Name = "${var.name_tag}"
-#   }
-# }
 
 resource "aws_subnet" "subnet1" {
     vpc_id = "${aws_vpc.vpc.id}"
@@ -55,7 +44,6 @@ resource "aws_subnet" "subnet2" {
 
 resource "aws_security_group" "default" {
   name        = "terraform_security_group"
-  description = "Terraform example security group"
   vpc_id      = "${aws_vpc.vpc.id}"
 
   # Allow outbound internet access.

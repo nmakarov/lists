@@ -11,14 +11,12 @@ resource "aws_subnet" "rds" {
 
 resource "aws_db_subnet_group" "default" {
   name        = "${var.rds_instance_identifier}-subnet-group"
-  description = "Terraform example RDS subnet group"
 #   subnet_ids  = ["${aws_subnet.rds.*.id}"]
     subnet_ids  = ["${aws_subnet.subnet1.id}", "${aws_subnet.subnet2.id}"]
 }
 
 resource "aws_security_group" "rds" {
   name        = "terraform_rds_security_group"
-  description = "Terraform example RDS MySQL server"
   vpc_id      = "${aws_vpc.vpc.id}"
   # Keep the instance private by only allowing traffic from the web server.
 #   ingress {
@@ -29,8 +27,8 @@ resource "aws_security_group" "rds" {
 #   }
 
   ingress {
-    from_port   = 0
-    to_port     = 65535
+    from_port   = 5432
+    to_port     = 5432
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -51,7 +49,7 @@ resource "aws_security_group" "rds" {
 resource "aws_db_instance" "default" {
   identifier                = "${var.rds_instance_identifier}"
   allocated_storage         = 20
-  engine                    = "postgresql"
+  engine                    = "postgres"
   engine_version            = "11.2"
   instance_class            = "db.t2.micro"
   name                      = "${var.database_name}"
@@ -63,16 +61,16 @@ resource "aws_db_instance" "default" {
   final_snapshot_identifier = "Ignore"
 }
 
-resource "aws_db_parameter_group" "default" {
-  name        = "${var.rds_instance_identifier}-param-group"
-  description = "Terraform example parameter group for postgresql"
-  family      = "postgresql.11.2"
-  parameter {
-    name  = "character_set_server"
-    value = "utf8"
-  }
-  parameter {
-    name  = "character_set_client"
-    value = "utf8"
-  }
-}
+# resource "aws_db_parameter_group" "default" {
+#   name        = "${var.rds_instance_identifier}-param-group"
+#   description = "Terraform example parameter group for postgresql"
+#   family      = "postgresql.11.2"
+#   parameter {
+#     name  = "character_set_server"
+#     value = "utf8"
+#   }
+#   parameter {
+#     name  = "character_set_client"
+#     value = "utf8"
+#   }
+# }
